@@ -19,7 +19,6 @@ namespace SlotMachine
                 int playerMoney = DEFAULT_CREDIT;
                 int wager;
                 string input;
-                int winAmount = 0;
                 Random random = new();
                 bool fail = V;
                 bool diagonal1 = V;
@@ -27,6 +26,8 @@ namespace SlotMachine
 
                 while (playerMoney > 0)
                 {
+                    int winAmount = 0;
+
                     Console.WriteLine($"Your current money: {playerMoney}");
                     Console.Write("Enter your wager amount: ");
 
@@ -51,19 +52,12 @@ namespace SlotMachine
                         break;
                     }
 
+                    // Generate and display the grid
                     for (int i = 0; i < 3; i++)
                     {
                         for (int j = 0; j < 3; j++)
                         {
-                            grid[i, j] = random.Next(1, 6);
-                        }
-                    }
-
-                    Console.WriteLine("Slot machine results:");
-                    for (int i = 0; i < 3; i++)
-                    {
-                        for (int j = 0; j < 3; j++)
-                        {
+                            grid[i, j] = random.Next(1, 5);
                             Console.Write(grid[i, j] + " ");
                         }
                         Console.WriteLine();
@@ -72,6 +66,7 @@ namespace SlotMachine
                     // Check horizontal lines
                     for (int row = 0; row < 3; row++)
                     {
+                        fail = false;
                         for (int col = 0; col < 2; col++)
                         {
                             if (grid[row, col] != grid[row, col + 1])
@@ -89,6 +84,7 @@ namespace SlotMachine
                     // Check vertical lines
                     for (int col = 0; col < 3; col++)
                     {
+                        fail = false;
                         for (int row = 0; row < 2; row++)
                         {
                             if (grid[row, col] != grid[row + 1, col])
@@ -131,7 +127,7 @@ namespace SlotMachine
                         winAmount += wager;
                     }
 
-                    playerMoney += winAmount; 
+                    playerMoney += winAmount;
 
                     if (winAmount > 0)
                     {
