@@ -22,8 +22,6 @@ namespace SlotMachine
                 string input;
                 Random random = new();
                 bool fail = false;
-                bool diagonal1 = false;
-                bool diagonal2 = false;
 
                 while (playerMoney > 0)
                 {
@@ -43,7 +41,7 @@ namespace SlotMachine
                     {
                         firstRound = false;
                     }
-                    Console.WriteLine($"Your current money: {playerMoney}");
+                    Console.WriteLine($"Your current money: {playerMoney} $");
                     Console.Write("Enter your wager amount: ");
                     
                     if (!int.TryParse(Console.ReadLine(), out wager) || wager <= 0)
@@ -111,25 +109,27 @@ namespace SlotMachine
                     {
                         if (grid[i, i] != grid[i + 1, i + 1])
                         {
-                            diagonal1 = true;
+                            fail = true;
                             break;
                         }
+
                     }
-                    if (!diagonal1)
+                    if (!fail)
                     {
                         winAmount += wager;
                     }
+
 
                     // Check diagonal from top-right to bottom-left
                     for (int i = 0; i < 2; i++)
                     {
                         if (grid[i, 2 - i] != grid[i + 1, 1 - i])
                         {
-                            diagonal2 = true;
+                            fail = true;
                             break;
                         }
                     }
-                    if (!diagonal2)
+                    if (!fail)
                     {
                         winAmount += wager;
                     }
