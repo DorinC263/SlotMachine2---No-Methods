@@ -22,7 +22,10 @@ namespace SlotMachine
 
                 Console.WriteLine("Welcome to the Slot Machine");
                 Console.WriteLine("How much money would you like to add?");
-                playerMoney = Convert.ToInt32(Console.ReadLine());
+                while (!int.TryParse(Console.ReadLine(), out playerMoney))
+                {
+                    Console.WriteLine("Please enter a valid digit!");
+                }
 
                 while (playerMoney > 0)
                 {
