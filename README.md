@@ -1,6 +1,6 @@
 # SlotMachine2 Game - No Methods
 
-A simple slot machine game where the user can play various lines in a 3x3 grid. The user can place a wager and try their luck on horizontal, vertical, and diagonal lines.You will start with 100$ in credit.
+A simple slot machine game where the user can play various lines in a 3x3 grid. The user can place a wager and try their luck on horizontal, vertical, and diagonal lines.You can add how much you want in credit.
 
 # Features:
 
