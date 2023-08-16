@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace SlotMachine
 {
     internal class Program
@@ -9,9 +8,9 @@ namespace SlotMachine
 
         static void Main(string[] args)
         {
-            char playAgain = 'y';
+            char playAgain = 'Y';
 
-            while (playAgain == 'Y' || playAgain == 'y')
+            while (playAgain == 'Y')
             {
                 Console.WriteLine("Welcome to the Slot Machine");
 
@@ -142,6 +141,7 @@ namespace SlotMachine
                 Console.WriteLine("Press any key to EXIT or 'Y' to start again!");
                 playAgain = Console.ReadKey().KeyChar;
                 playAgain = char.ToUpper(playAgain);
+                Console.WriteLine();
             }
         }
     }
