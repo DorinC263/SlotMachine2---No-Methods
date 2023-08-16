@@ -3,7 +3,6 @@ namespace SlotMachine
 {
     internal class Program
     {
-        const bool V = false;
         const int DEFAULT_CREDIT = 100;
 
         static void Main(string[] args)
@@ -19,9 +18,9 @@ namespace SlotMachine
                 int wager;
                 string input;
                 Random random = new();
-                bool fail = V;
-                bool diagonal1 = V;
-                bool diagonal2 = V;
+                bool fail = false;
+                bool diagonal1 = false;
+                bool diagonal2 = false;
 
                 while (playerMoney > 0)
                 {
