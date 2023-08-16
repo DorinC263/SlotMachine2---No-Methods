@@ -3,7 +3,6 @@ namespace SlotMachine
 {
     internal class Program
     {
-        const int DEFAULT_CREDIT = 100;
         const int ROW_COUNT = 3;
         const int COLUMN_COUNT = 3;
 
@@ -14,14 +13,16 @@ namespace SlotMachine
 
             while (playAgain == 'Y')
             {
-                Console.WriteLine("Welcome to the Slot Machine");
-
                 int[,] grid = new int[ROW_COUNT, COLUMN_COUNT];
-                int playerMoney = DEFAULT_CREDIT;
+                int playerMoney;
                 int wager;
                 string input;
                 Random random = new();
                 bool fail = false;
+
+                Console.WriteLine("Welcome to the Slot Machine");
+                Console.WriteLine("How much money would you like to add?");
+                playerMoney = Convert.ToInt32(Console.ReadLine());
 
                 while (playerMoney > 0)
                 {
