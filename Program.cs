@@ -30,9 +30,9 @@ namespace SlotMachine
                     if (!firstRound)
                     {
                         Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
-                        input = Console.ReadLine().ToLower();
+                        input = Console.ReadLine().ToUpper();
 
-                        if (input == "e")
+                        if (input == "E")
                         {
                             break;
                         }
