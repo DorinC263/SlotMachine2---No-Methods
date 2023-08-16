@@ -10,6 +10,7 @@ namespace SlotMachine
         static void Main(string[] args)
         {
             char playAgain = 'Y';
+            bool firstRound = true;
 
             while (playAgain == 'Y')
             {
@@ -28,9 +29,23 @@ namespace SlotMachine
                 {
                     int winAmount = 0;
 
+                    if (!firstRound)
+                    {
+                        Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
+                        input = Console.ReadLine().ToLower();
+
+                        if (input == "e")
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        firstRound = false;
+                    }
                     Console.WriteLine($"Your current money: {playerMoney}");
                     Console.Write("Enter your wager amount: ");
-
+                    
                     if (!int.TryParse(Console.ReadLine(), out wager) || wager <= 0)
                     {
                         Console.WriteLine("Please enter a valid wager amount!");
@@ -40,17 +55,9 @@ namespace SlotMachine
                     {
                         Console.WriteLine("You don't have enough money to place that wager!");
                         continue;
-                    }
+                    }                    
 
-                    playerMoney -= wager;
-
-                    Console.WriteLine("Please enter 'E' to exit or 'Enter' to spin");
-                    input = Console.ReadLine().ToLower();
-
-                    if (input == "e")
-                    {
-                        break;
-                    }
+                    playerMoney -= wager; 
 
                     // Generate and display the grid
                     for (int i = 0; i < 3; i++)
@@ -67,7 +74,7 @@ namespace SlotMachine
                     for (int row = 0; row < ROW_COUNT; row++)
                     {
                         fail = false;
-                        for (int col = 0; col < 2; col++)
+                        for (int col = 0; col < COLUMN_COUNT -1; col++)
                         {
                             if (grid[row, col] != grid[row, col + 1])
                             {
@@ -85,7 +92,7 @@ namespace SlotMachine
                     for (int col = 0; col < COLUMN_COUNT; col++)
                     {
                         fail = false;
-                        for (int row = 0; row < ROW_COUNT; row++)
+                        for (int row = 0; row < ROW_COUNT - 1; row++)
                         {
                             if (grid[row, col] != grid[row + 1, col])
                             {
