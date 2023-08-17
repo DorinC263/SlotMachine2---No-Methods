@@ -5,11 +5,20 @@ namespace SlotMachine
     {
         const int ROW_COUNT = 3;
         const int COLUMN_COUNT = 3;
+        const int MIN_NUMBER = 1;
+        const int MAX_NUMBER = 9;
 
         static void Main(string[] args)
         {
             char playAgain = 'Y';
             bool firstRound = true;
+            Random random = new();
+
+            Console.WriteLine("\t\tWelcome to the Slot Machine");
+            Console.WriteLine("\tFor each winning line you need to increase your bet by 5$ !!");
+            Console.WriteLine("\tOnly vertical lines - 5$ bet");
+            Console.WriteLine("\tHorizontal and vertical lines - 10$ bet");
+            Console.WriteLine("\tHorizontal, vertical and diagonaly lines - 15$ bet");
 
             while (playAgain == 'Y')
             {
@@ -17,11 +26,9 @@ namespace SlotMachine
                 int playerMoney;
                 int wager;
                 string input;
-                Random random = new();
                 bool fail = false;
 
-                Console.WriteLine("Welcome to the Slot Machine");
-                Console.WriteLine("How much money would you like to add?");
+                Console.Write("How much money would you like to add?");
                 while (!int.TryParse(Console.ReadLine(), out playerMoney))
                 {
                     Console.WriteLine("Please enter a valid digit!");
@@ -47,7 +54,7 @@ namespace SlotMachine
                     }
                     Console.WriteLine($"Your current money: {playerMoney} $");
                     Console.Write("Enter your wager amount: ");
-                    
+
                     if (!int.TryParse(Console.ReadLine(), out wager) || wager <= 0)
                     {
                         Console.WriteLine("Please enter a valid wager amount!");
@@ -57,28 +64,82 @@ namespace SlotMachine
                     {
                         Console.WriteLine("You don't have enough money to place that wager!");
                         continue;
-                    }                    
+                    }
 
-                    playerMoney -= wager; 
+                    playerMoney -= wager;
 
                     // Generate and display the grid
                     for (int i = 0; i < 3; i++)
                     {
                         for (int j = 0; j < 3; j++)
                         {
-                            grid[i, j] = random.Next(1, 5);
+                            grid[i, j] = random.Next(MIN_NUMBER, MAX_NUMBER);
                             Console.Write(grid[i, j] + " ");
                         }
                         Console.WriteLine();
                     }
 
-                    // Check horizontal lines
-                    for (int row = 0; row < ROW_COUNT; row++)
+                    if (wager >= 5)
                     {
-                        fail = false;
-                        for (int col = 0; col < COLUMN_COUNT -1; col++)
+                        // Check horizontal lines
+                        for (int row = 0; row < ROW_COUNT; row++)
                         {
-                            if (grid[row, col] != grid[row, col + 1])
+                            fail = false;
+                            for (int col = 0; col < COLUMN_COUNT - 1; col++)
+                            {
+                                if (grid[row, col] != grid[row, col + 1])
+                                {
+                                    fail = true;
+                                    break;
+                                }
+                            }
+                            if (!fail)
+                            {
+                                winAmount += wager;
+                            }
+                        }
+                    }
+
+                    if (wager >= 10)
+                    {
+                        // Check vertical lines
+                        for (int col = 0; col < COLUMN_COUNT; col++)
+                        {
+                            fail = false;
+                            for (int row = 0; row < ROW_COUNT - 1; row++)
+                            {
+                                if (grid[row, col] != grid[row + 1, col])
+                                {
+                                    fail = true;
+                                    break;
+                                }
+                            }
+                            if (!fail)
+                            {
+                                winAmount += wager;
+                            }
+                        }
+                    }
+                    if (wager >= 15)
+                    {
+                        // Check diagonal from top-left to bottom-right
+                        for (int i = 0; i < 2; i++)
+                        {
+                            if (grid[i, i] != grid[i + 1, i + 1])
+                            {
+                                fail = true;
+                                break;
+                            }
+
+                        }
+                        if (!fail)
+                        {
+                            winAmount += wager;
+                        }
+                        // Check diagonal from top-right to bottom-left
+                        for (int i = 0; i < 2; i++)
+                        {
+                            if (grid[i, 2 - i] != grid[i + 1, 1 - i])
                             {
                                 fail = true;
                                 break;
@@ -88,54 +149,6 @@ namespace SlotMachine
                         {
                             winAmount += wager;
                         }
-                    }
-
-                    // Check vertical lines
-                    for (int col = 0; col < COLUMN_COUNT; col++)
-                    {
-                        fail = false;
-                        for (int row = 0; row < ROW_COUNT - 1; row++)
-                        {
-                            if (grid[row, col] != grid[row + 1, col])
-                            {
-                                fail = true;
-                                break;
-                            }
-                        }
-                        if (!fail)
-                        {
-                            winAmount += wager;
-                        }
-                    }
-
-                    // Check diagonal from top-left to bottom-right
-                    for (int i = 0; i < 2; i++)
-                    {
-                        if (grid[i, i] != grid[i + 1, i + 1])
-                        {
-                            fail = true;
-                            break;
-                        }
-
-                    }
-                    if (!fail)
-                    {
-                        winAmount += wager;
-                    }
-
-
-                    // Check diagonal from top-right to bottom-left
-                    for (int i = 0; i < 2; i++)
-                    {
-                        if (grid[i, 2 - i] != grid[i + 1, 1 - i])
-                        {
-                            fail = true;
-                            break;
-                        }
-                    }
-                    if (!fail)
-                    {
-                        winAmount += wager;
                     }
 
                     playerMoney += winAmount;
