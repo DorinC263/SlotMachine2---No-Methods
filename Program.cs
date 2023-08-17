@@ -25,7 +25,7 @@ namespace SlotMachine
                 int playerMoney;
                 int wager;
                 string input;
-                bool fail = false;
+                bool winningLine = false;
 
                 Console.Write("How much $ would you like to add? : ");
                 while (!int.TryParse(Console.ReadLine(), out playerMoney))
@@ -69,16 +69,16 @@ namespace SlotMachine
                         // Check horizontal lines
                         for (int row = 0; row < ROW_COUNT; row++)
                         {
-                            fail = false;
+                            winningLine = false;
                             for (int col = 0; col < COLUMN_COUNT - 1; col++)
                             {
                                 if (grid[row, col] != grid[row, col + 1])
                                 {
-                                    fail = true;
+                                    winningLine = true;
                                     break;
                                 }
                             }
-                            if (!fail)
+                            if (!winningLine)
                             {
                                 winAmount += wager;
                             }
@@ -90,16 +90,16 @@ namespace SlotMachine
                         // Check vertical lines
                         for (int col = 0; col < COLUMN_COUNT; col++)
                         {
-                            fail = false;
+                            winningLine = false;
                             for (int row = 0; row < ROW_COUNT - 1; row++)
                             {
                                 if (grid[row, col] != grid[row + 1, col])
                                 {
-                                    fail = true;
+                                    winningLine = true;
                                     break;
                                 }
                             }
-                            if (!fail)
+                            if (!winningLine)
                             {
                                 winAmount += wager;
                             }
@@ -112,12 +112,12 @@ namespace SlotMachine
                         {
                             if (grid[i, i] != grid[i + 1, i + 1])
                             {
-                                fail = true;
+                                winningLine = true;
                                 break;
                             }
 
                         }
-                        if (!fail)
+                        if (!winningLine)
                         {
                             winAmount += wager;
                         }
@@ -126,11 +126,11 @@ namespace SlotMachine
                         {
                             if (grid[i, 2 - i] != grid[i + 1, 1 - i])
                             {
-                                fail = true;
+                                winningLine = true;
                                 break;
                             }
                         }
-                        if (!fail)
+                        if (!winningLine)
                         {
                             winAmount += wager;
                         }
