@@ -27,7 +27,7 @@ namespace SlotMachine
                 string input;
                 bool fail = false;
 
-                Console.Write("How much money would you like to add?");
+                Console.Write("How much $ would you like to add? : ");
                 while (!int.TryParse(Console.ReadLine(), out playerMoney))
                 {
                     Console.WriteLine("Please enter a valid digit!");
@@ -54,9 +54,9 @@ namespace SlotMachine
                     playerMoney -= wager;
 
                     // Generate and display the grid
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < COLUMN_COUNT; i++)
                     {
-                        for (int j = 0; j < 3; j++)
+                        for (int j = 0; j < ROW_COUNT; j++)
                         {
                             grid[i, j] = random.Next(MIN_NUMBER, MAX_NUMBER);
                             Console.Write(grid[i, j] + " ");
