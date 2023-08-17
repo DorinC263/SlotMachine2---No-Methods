@@ -22,15 +22,21 @@ namespace SlotMachine
             while (playAgain == 'Y')
             {
                 int[,] grid = new int[ROW_COUNT, COLUMN_COUNT];
-                int playerMoney;
-                int wager;
+                int playerMoney = 0;
+                int wager = 0;
                 string input;
                 bool winningLine = false;
+                bool validInput = false;
 
-                Console.Write("How much $ would you like to add? : ");
-                while (!int.TryParse(Console.ReadLine(), out playerMoney))
+                while (!validInput)
                 {
-                    Console.WriteLine("Please enter a valid digit!");
+                    Console.Write("How much $ would you like to add? : ");
+                    validInput = int.TryParse(Console.ReadLine(), out playerMoney);
+
+                   if (!validInput)
+                    {
+                        Console.WriteLine("Please enter a valid digit!");
+                    }
                 }
 
                 while (playerMoney > 0)
@@ -40,11 +46,13 @@ namespace SlotMachine
                     Console.WriteLine($"Your current money: {playerMoney} $");
                     Console.Write("Enter your wager amount: ");
 
-                    if (!int.TryParse(Console.ReadLine(), out wager) || wager <= 0)
+                    validInput = int.TryParse(Console.ReadLine(), out wager);
+                    if (!validInput)
                     {
                         Console.WriteLine("Please enter a valid wager amount!");
                         continue;
                     }
+
                     if (wager > playerMoney)
                     {
                         Console.WriteLine("You don't have enough money to place that wager!");
