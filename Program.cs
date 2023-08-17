@@ -11,7 +11,6 @@ namespace SlotMachine
         static void Main(string[] args)
         {
             char playAgain = 'Y';
-            bool firstRound = true;
             Random random = new();
 
             Console.WriteLine("\t\tWelcome to the Slot Machine");
@@ -38,20 +37,6 @@ namespace SlotMachine
                 {
                     int winAmount = 0;
 
-                    if (!firstRound)
-                    {
-                        Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
-                        input = Console.ReadLine().ToUpper();
-
-                        if (input == "E")
-                        {
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        firstRound = false;
-                    }
                     Console.WriteLine($"Your current money: {playerMoney} $");
                     Console.Write("Enter your wager amount: ");
 
@@ -160,6 +145,14 @@ namespace SlotMachine
                     else
                     {
                         Console.WriteLine("Sorry, try again.");
+                    }
+
+                    Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
+                    input = Console.ReadLine().ToUpper();
+
+                    if (input == "E")
+                    {
+                        break;
                     }
                 }
                 Console.WriteLine("Would you like to play again?");
