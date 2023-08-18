@@ -7,6 +7,9 @@ namespace SlotMachine
         const int COLUMN_COUNT = 3;
         const int MIN_NUMBER = 1;
         const int MAX_NUMBER = 9;
+        const int VERTICAL_LINES = 5;
+        const int HORIZONTAL_LINES = 10;
+        const int ALL_LINES = 15;
 
         static void Main(string[] args)
         {
@@ -33,7 +36,7 @@ namespace SlotMachine
                     Console.Write("How much $ would you like to add? : ");
                     validInput = int.TryParse(Console.ReadLine(), out playerMoney);
 
-                   if (!validInput)
+                    if (!validInput)
                     {
                         Console.WriteLine("Please enter a valid digit!");
                     }
@@ -72,7 +75,7 @@ namespace SlotMachine
                         Console.WriteLine();
                     }
 
-                    if (wager >= 5)
+                    if (wager >= VERTICAL_LINES)
                     {
                         // Check horizontal lines
                         for (int row = 0; row < ROW_COUNT; row++)
@@ -93,7 +96,7 @@ namespace SlotMachine
                         }
                     }
 
-                    if (wager >= 10)
+                    if (wager >= HORIZONTAL_LINES)
                     {
                         // Check vertical lines
                         for (int col = 0; col < COLUMN_COUNT; col++)
@@ -113,7 +116,7 @@ namespace SlotMachine
                             }
                         }
                     }
-                    if (wager >= 15)
+                    if (wager >= ALL_LINES)
                     {
                         // Check diagonal from top-left to bottom-right
                         for (int i = 0; i < 2; i++)
