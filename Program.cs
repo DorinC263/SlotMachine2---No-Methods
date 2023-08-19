@@ -118,6 +118,7 @@ namespace SlotMachine
                     }
                     if (wager >= ALL_LINES)
                     {
+                        winningLine = false;
                         // Check diagonal from top-left to bottom-right
                         for (int i = 0; i < 2; i++)
                         {
