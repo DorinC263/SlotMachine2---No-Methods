@@ -14,7 +14,7 @@ namespace SlotMachine
         static void Main(string[] args)
         {
             char playAgain = 'Y';
-            Random random = new();
+            Random random = new Random();
 
             Console.WriteLine("\t\tWelcome to the Slot Machine");
             Console.WriteLine("\tFor each winning line you need to increase your bet by 5$ !!");
