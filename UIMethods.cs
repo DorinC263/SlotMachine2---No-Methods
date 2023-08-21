@@ -56,7 +56,8 @@ namespace SlotMachine2
         public static bool ContinueOrExit()
         {
             Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
-            if (Console.ReadLine() != "e" || Console.ReadLine() != "E")
+            string userInput = Console.ReadLine().ToLower();
+            if (userInput.ToLower() == "e")
             {
                 return true;
             }
@@ -64,21 +65,20 @@ namespace SlotMachine2
             {
                 return false;
             }
-            
-            
         }
 
         public static bool PlayAgain()
         {
             Console.WriteLine("Would you like to play again?");
             Console.WriteLine("Press any key to EXIT or 'Y' to start again!");
-            if(Console.ReadLine() == "y" || Console.ReadLine() == "Y")
+            string exitOrStartAgain = Console.ReadLine().ToLower();
+            if (exitOrStartAgain.ToLower() == "y")
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
     }

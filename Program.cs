@@ -113,6 +113,7 @@ namespace SlotMachine
                             }
                         }
                     }
+
                     if (wager >= ALL_LINES)
                     {
                         winningLine = false;
@@ -156,10 +157,17 @@ namespace SlotMachine
                         UIMethods.NotWinning();
                     }
 
-                    UIMethods.ContinueOrExit();
-                    
+                    bool continuePlay = UIMethods.ContinueOrExit();
+                    if(continuePlay == true)
+                    {
+                        break;
+                    }       
                 }
-                UIMethods.PlayAgain();
+                bool exitOrPlay = UIMethods.PlayAgain();
+                if(exitOrPlay == false)
+                {
+                    break;
+                }
             }
         }
     }
