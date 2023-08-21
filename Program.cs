@@ -25,7 +25,6 @@ namespace SlotMachine
                 int[,] grid = new int[ROW_COUNT, COLUMN_COUNT];
                 int playerMoney = 0;
                 int wager;
-                string input;
                 bool winningLine;
                 bool validInput = false;
 
