@@ -1,4 +1,6 @@
 ﻿
+using SlotMachine2;
+
 namespace SlotMachine
 {
     internal class Program
@@ -16,11 +18,7 @@ namespace SlotMachine
             char playAgain = 'Y';
             Random random = new Random();
 
-            Console.WriteLine("\t\tWelcome to the Slot Machine");
-            Console.WriteLine("\tFor each winning line you need to increase your bet by 5$ !!");
-            Console.WriteLine("\tOnly vertical lines - 5$ bet");
-            Console.WriteLine("\tHorizontal and vertical lines - 10$ bet");
-            Console.WriteLine("\tHorizontal, vertical and diagonaly lines - 15$ bet");
+            UIMethods.DisplayWelcomeMessage();
 
             while (playAgain == 'Y')
             {
@@ -28,17 +26,17 @@ namespace SlotMachine
                 int playerMoney = 0;
                 int wager;
                 string input;
-                bool winningLine = false;
+                bool winningLine;
                 bool validInput = false;
 
                 while (!validInput)
                 {
-                    Console.Write("How much $ would you like to add? : ");
+                    UIMethods.AddMoney();
                     validInput = int.TryParse(Console.ReadLine(), out playerMoney);
 
                     if (!validInput)
                     {
-                        Console.WriteLine("Please enter a valid digit!");
+                        UIMethods.NotValidDigit();
                     }
                 }
 
@@ -46,19 +44,18 @@ namespace SlotMachine
                 {
                     int winAmount = 0;
 
-                    Console.WriteLine($"Your current money: {playerMoney} $");
-                    Console.Write("Enter your wager amount: ");
+                    UIMethods.CurentMoney(playerMoney);
 
                     validInput = int.TryParse(Console.ReadLine(), out wager);
                     if (!validInput)
                     {
-                        Console.WriteLine("Please enter a valid wager amount!");
+                        UIMethods.WageAmount();
                         continue;
                     }
 
                     if (wager > playerMoney)
                     {
-                        Console.WriteLine("You don't have enough money to place that wager!");
+                        UIMethods.NotEnoughMoney();
                         continue;
                     }
 
@@ -152,26 +149,17 @@ namespace SlotMachine
 
                     if (winAmount > 0)
                     {
-                        Console.WriteLine($"Congratulations! You have won ${winAmount}. Your new total is ${playerMoney}.");
+                        UIMethods.WonAmount(winAmount,playerMoney);
                     }
                     else
                     {
-                        Console.WriteLine("Sorry, try again.");
+                        UIMethods.NotWinning();
                     }
 
-                    Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
-                    input = Console.ReadLine().ToUpper();
-
-                    if (input == "E")
-                    {
-                        break;
-                    }
+                    UIMethods.ContinueOrExit();
+                    
                 }
-                Console.WriteLine("Would you like to play again?");
-                Console.WriteLine("Press any key to EXIT or 'Y' to start again!");
-                playAgain = Console.ReadKey().KeyChar;
-                playAgain = char.ToUpper(playAgain);
-                Console.WriteLine();
+                UIMethods.PlayAgain();
             }
         }
     }
