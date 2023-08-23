@@ -14,14 +14,12 @@ namespace SlotMachine
 
             while (playAgain == 'Y')
             {
-
                 int playerMoney = 0;
                 int wager;
                 bool validInput = false;
 
                 while (!validInput)
                 {
-
                     UIMethods.AddMoney();
                     validInput = int.TryParse(Console.ReadLine(), out playerMoney);
 
@@ -33,7 +31,6 @@ namespace SlotMachine
 
                 while (playerMoney > 0)
                 {
-
                     UIMethods.CurentMoney(playerMoney);
 
                     validInput = int.TryParse(Console.ReadLine(), out wager);
@@ -72,7 +69,7 @@ namespace SlotMachine
                     {
                         break;
                     }
-                    
+
                 }
                 bool exitOrPlay = UIMethods.PlayAgain();
                 if (exitOrPlay == false)
@@ -81,7 +78,6 @@ namespace SlotMachine
                 }                
             }
             UIMethods.ThankYouForPlaying();
-
         }
     }
 }
