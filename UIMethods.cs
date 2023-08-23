@@ -53,6 +53,11 @@ namespace SlotMachine2
             Console.WriteLine("Sorry, try again.");
         }
 
+        public static void ThankYouForPlaying()
+        {
+            Console.WriteLine("Thank you for chossing to Play the SlotMachine!");
+        }
+
         public static bool ContinueOrExit()
         {
             Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SlotMachine2
 {
     public static class LogicMethods
-    {        
+    {
         const int VERTICAL_LINES = 5;
         const int HORIZONTAL_LINES = 10;
         const int ALL_LINES = 15;
@@ -38,82 +38,72 @@ namespace SlotMachine2
             bool winningLine = false;
             winAmount = 0;
 
-            if (wager >= VERTICAL_LINES)
+            // Check vertical lines
+            for (int col = 0; col < COLUMN_COUNT; col++)
             {
-                // Check horizontal lines
-                for (int row = 0; row < ROW_COUNT; row++)
+                winningLine = false;
+                for (int row = 0; row < ROW_COUNT - 1; row++)
                 {
-                    winningLine = true;
-                    for (int col = 0; col < COLUMN_COUNT - 1; col++)
+                    if (grid[row, col] != grid[row + 1, col])
                     {
-                        if (grid[row, col] != grid[row, col + 1])
-                        {
-                            winningLine = false;
-                            break;
-                        }
-                    }
-                    if (winningLine)
-                    {
-                        winAmount += wager;
-                    }
-                }
-            }
-
-            if (wager >= HORIZONTAL_LINES)
-            {
-                // Check vertical lines
-                for (int col = 0; col < COLUMN_COUNT; col++)
-                {
-                    winningLine = true;
-                    for (int row = 0; row < ROW_COUNT - 1; row++)
-                    {
-                        if (grid[row, col] != grid[row + 1, col])
-                        {
-                            winningLine = false;
-                            break;
-                        }
-                    }
-                    if (winningLine)
-                    {
-                        winAmount += wager;
-                    }
-                }
-            }
-
-            if (wager >= ALL_LINES)
-            {
-                winningLine = true;
-                // Check diagonal from top-left to bottom-right
-                for (int i = 0; i < 2; i++)
-                {
-                    if (grid[i, i] != grid[i + 1, i + 1])
-                    {
-                        winningLine = false;
-                        break;
-                    }
-
-                }
-                if (winningLine)
-                {
-                    winAmount += wager;
-                }
-                // Check diagonal from top-right to bottom-left
-                for (int i = 0; i < 2; i++)
-                {
-                    if (grid[i, 2 - i] != grid[i + 1, 1 - i])
-                    {
-                        winningLine = false;
+                        winningLine = true;
                         break;
                     }
                 }
-                if (winningLine)
+                if (!winningLine)
                 {
-                    winAmount += wager;
+                    winAmount += wager; // Add wager to winAmount for each vertical line
                 }
             }
-            return winningLine;
+
+            // Check horizontal lines
+            for (int row = 0; row < ROW_COUNT; row++)
+            {
+                winningLine = false;
+                for (int col = 0; col < COLUMN_COUNT - 1; col++)
+                {
+                    if (grid[row, col] != grid[row, col + 1])
+                    {
+                        winningLine = true;
+                        break;
+                    }
+                }
+                if (!winningLine)
+                {
+                    winAmount += wager; // Add wager to winAmount for each horizontal line
+                }
+            }
+
+            // Check diagonal lines
+            winningLine = false;
+            for (int i = 0; i < ROW_COUNT - 1; i++)
+            {
+                if (grid[i, i] != grid[i + 1, i + 1])
+                {
+                    winningLine = true;
+                    break;
+                }
+            }
+            if (!winningLine)
+            {
+                winAmount += wager; // Add wager to winAmount for diagonal line
+            }
+
+            winningLine = false;
+            for (int i = 0; i < ROW_COUNT - 1; i++)
+            {
+                if (grid[i, COLUMN_COUNT - 1 - i] != grid[i + 1, COLUMN_COUNT - 2 - i])
+                {
+                    winningLine = true;
+                    break;
+                }
+            }
+            if (!winningLine)
+            {
+                winAmount += wager; // Add wager to winAmount for diagonal line
+            }
+
+            return winAmount > 0; // Return true if winAmount is greater than 0
         }
-
-        
     }
 }

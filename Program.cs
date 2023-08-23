@@ -64,6 +64,7 @@ namespace SlotMachine
                     else
                     {
                         UIMethods.NotWinning();
+                        playerMoney -= winAmount;
                     }
 
                     bool continuePlay = UIMethods.ContinueOrExit();
@@ -77,9 +78,10 @@ namespace SlotMachine
                 if (exitOrPlay == false)
                 {
                     break;
-                }
+                }                
             }
-                
+            UIMethods.ThankYouForPlaying();
+
         }
     }
 }
