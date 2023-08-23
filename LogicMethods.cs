@@ -110,8 +110,7 @@ namespace SlotMachine2
                 {
                     winAmount += wager; // Add wager to winAmount for diagonal line
                 }
-            }
-            
+            }          
 
             return winAmount > 0; // Return true if winAmount is greater than 0
         }

@@ -77,11 +77,8 @@ namespace SlotMachine2
             if (exitOrStartAgain.Trim().ToUpper() == "Y")
             {
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            }            
+            return false;            
         }
     }
 }
