@@ -61,10 +61,7 @@ namespace SlotMachine2
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public static bool PlayAgain()
@@ -72,7 +69,7 @@ namespace SlotMachine2
             Console.WriteLine("Would you like to play again?");
             Console.WriteLine("Press any key to EXIT or 'Y' to start again!");
             string exitOrStartAgain = Console.ReadLine().ToLower();
-            if (exitOrStartAgain.ToLower() == "y")
+            if (exitOrStartAgain.Trim().ToUpper() == "Y")
             {
                 return true;
             }
