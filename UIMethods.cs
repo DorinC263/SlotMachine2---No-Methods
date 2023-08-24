@@ -12,32 +12,16 @@ namespace SlotMachine2
         {
             Console.WriteLine("\t\tWelcome to the Slot Machine");
             Console.WriteLine("\tFor each winning line you need to increase your bet by 5$ !!");
-            Console.WriteLine("\tOnly vertical lines - 5$ bet");
-            Console.WriteLine("\tHorizontal and vertical lines - 10$ bet");
-            Console.WriteLine("\tHorizontal, vertical and diagonaly lines - 15$ bet");
+            Console.WriteLine($"\tOnly vertical lines - {Constants.VERTICAL_LINES}$ bet");
+            Console.WriteLine($"\tHorizontal and vertical lines - {Constants.HORIZONTAL_LINES}$ bet");
+            Console.WriteLine($"\tHorizontal, vertical and diagonaly lines - {Constants.ALL_LINES}$ bet");
         }
-
-        public static void AddMoney()
-        {
-            Console.Write("How much $ would you like to add? : ");
-        }
-
-        public static void NotValidDigit()
-        {
-            Console.WriteLine("Please enter a valid digit!");
-        }
-
+        
         public static void CurentMoney(int playerMoney)
         {
             Console.WriteLine($"Your current money: {playerMoney} $");
             Console.Write("Enter your wager amount: ");
         }
-
-        public static void WageAmount()
-        {
-            Console.WriteLine("Please enter a valid wager amount!");
-        }
-
         public static void NotEnoughMoney()
         {
             Console.WriteLine("You don't have enough money to place that wager!");
@@ -77,8 +61,43 @@ namespace SlotMachine2
             if (exitOrStartAgain.Trim().ToUpper() == "Y")
             {
                 return true;
-            }            
-            return false;            
+            }
+            return false;
+        }
+
+        public static int GetMoneyAmount()
+        {
+            while (true)
+            {
+                Console.Write("How much $ would you like to add? : ");
+
+                int value = 0;
+                string valueString = Console.ReadLine();
+                                
+                if (int.TryParse(valueString, out value))
+                {
+                    return value;
+                }
+                Console.WriteLine("Please enter a valid Digit!");
+
+            }
+            
+        }
+
+        public static int GetWagerAmount()
+        {
+            while(true)
+            {
+                int wager = 0;
+                string wagerString = Console.ReadLine();
+
+                if (int.TryParse(wagerString, out wager))
+                {
+                    return wager;
+                }                
+                Console.Write("Please enter a valid wager amount! : ");
+            }
+            
         }
     }
 }

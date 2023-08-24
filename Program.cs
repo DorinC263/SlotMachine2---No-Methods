@@ -14,32 +14,17 @@ namespace SlotMachine
 
             while (playAgain == 'Y')
             {
-                int playerMoney = 0;
+                int playerMoney;
                 int wager;
-                bool validInput = false;
 
-                while (!validInput)
-                {
-                    UIMethods.AddMoney();
-                    validInput = int.TryParse(Console.ReadLine(), out playerMoney);
-
-                    if (!validInput)
-                    {
-                        UIMethods.NotValidDigit();
-                    }
-                }
+                playerMoney = UIMethods.GetMoneyAmount(); 
 
                 while (playerMoney > 0)
                 {
                     UIMethods.CurentMoney(playerMoney);
 
-                    validInput = int.TryParse(Console.ReadLine(), out wager);
-                    if (!validInput)
-                    {
-                        UIMethods.WageAmount();
-                        continue;
-                    }
-
+                    wager = UIMethods.GetWagerAmount();
+                                        
                     if (wager > playerMoney)
                     {
                         UIMethods.NotEnoughMoney();
@@ -75,7 +60,7 @@ namespace SlotMachine
                 if (exitOrPlay == false)
                 {
                     break;
-                }                
+                }
             }
             UIMethods.ThankYouForPlaying();
         }

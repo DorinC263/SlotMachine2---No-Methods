@@ -1,21 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using static SlotMachine2.Constants;
 
 namespace SlotMachine2
 {
     public static class LogicMethods
-    {
-        const int VERTICAL_LINES = 5;
-        const int HORIZONTAL_LINES = 10;
-        const int ALL_LINES = 15;
-        const int ROW_COUNT = 3;
-        const int COLUMN_COUNT = 3;
-        const int MIN_NUMBER = 1;
-        const int MAX_NUMBER = 9;
-
+    {   
         public static int[,] GenerateGrid(Random random)
         {
             int[,] grid = new int[ROW_COUNT, COLUMN_COUNT];
