@@ -4,19 +4,17 @@ namespace SlotMachine2
 {
     public static class LogicMethods
     {   
-        public static int[,] GenerateGrid(Random random)
+        public static int[,] GenerateGrid(Random random, int ROW_COUNT, int COLUMN_COUNT,int MIN_NUMBER, int MAX_NUMBER)
         {
             int[,] grid = new int[ROW_COUNT, COLUMN_COUNT];
 
-            //Generate and display Grid
+            //Generate the Grid
             for (int i = 0; i < COLUMN_COUNT; i++)
             {
                 for (int j = 0; j < ROW_COUNT; j++)
                 {
                     grid[i, j] = random.Next(MIN_NUMBER, MAX_NUMBER);
-                    Console.Write(grid[i, j] + " ");
                 }
-                Console.WriteLine();
             }
             return grid;
         }

@@ -1,4 +1,4 @@
-﻿
+﻿using static SlotMachine2.Constants;
 using SlotMachine2;
 
 namespace SlotMachine
@@ -33,8 +33,8 @@ namespace SlotMachine
 
                     playerMoney -= wager;
                     int winAmount = 0;
-                    int[,] grid = LogicMethods.GenerateGrid(random);
-
+                    int[,] grid = LogicMethods.GenerateGrid(random,ROW_COUNT,COLUMN_COUNT,MIN_NUMBER,MAX_NUMBER);
+                    UIMethods.DisplayGrid(grid);
                     bool hasWon = LogicMethods.CheckWinningLines(grid, wager, out winAmount);
 
                     if (hasWon)
@@ -54,7 +54,6 @@ namespace SlotMachine
                     {
                         break;
                     }
-
                 }
                 bool exitOrPlay = UIMethods.PlayAgain();
                 if (exitOrPlay == false)

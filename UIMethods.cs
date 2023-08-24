@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SlotMachine2
+﻿namespace SlotMachine2
 {
     public static class UIMethods
     {
@@ -22,6 +16,7 @@ namespace SlotMachine2
             Console.WriteLine($"Your current money: {playerMoney} $");
             Console.Write("Enter your wager amount: ");
         }
+
         public static void NotEnoughMoney()
         {
             Console.WriteLine("You don't have enough money to place that wager!");
@@ -40,6 +35,19 @@ namespace SlotMachine2
         public static void ThankYouForPlaying()
         {
             Console.WriteLine("Thank you for chossing to Play the SlotMachine!");
+        }
+
+        public static void DisplayGrid(int[,] grid)
+        {
+            //Display the grid
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < grid.GetLength(1); j++)
+                {
+                    Console.Write(grid[i, j] + " ");
+                }
+                Console.WriteLine();
+            }                
         }
 
         public static bool ContinueOrExit()
@@ -79,11 +87,8 @@ namespace SlotMachine2
                     return value;
                 }
                 Console.WriteLine("Please enter a valid Digit!");
-
-            }
-            
+            }            
         }
-
         public static int GetWagerAmount()
         {
             while(true)
@@ -96,8 +101,7 @@ namespace SlotMachine2
                     return wager;
                 }                
                 Console.Write("Please enter a valid wager amount! : ");
-            }
-            
+            }            
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SlotMachine2
+﻿namespace SlotMachine2
 {
     public static class Constants
     {
