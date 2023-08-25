@@ -79,10 +79,9 @@
             {
                 Console.Write("How much $ would you like to add? : ");
 
-                int value = 0;
                 string valueString = Console.ReadLine();
                                 
-                if (int.TryParse(valueString, out value))
+                if (int.TryParse(valueString, out int value))
                 {
                     return value;
                 }
@@ -93,10 +92,9 @@
         {
             while(true)
             {
-                int wager = 0;
                 string wagerString = Console.ReadLine();
 
-                if (int.TryParse(wagerString, out wager))
+                if (int.TryParse(wagerString, out int wager))
                 {
                     return wager;
                 }                
