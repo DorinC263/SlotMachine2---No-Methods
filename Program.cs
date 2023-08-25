@@ -5,10 +5,11 @@ namespace SlotMachine
 {
     internal class Program
     {
+        public static Random random = new Random();
         static void Main(string[] args)
         {
             char playAgain = 'Y';
-            Random random = new Random();
+            
 
             UIMethods.DisplayWelcomeMessage();
 
@@ -33,7 +34,7 @@ namespace SlotMachine
 
                     playerMoney -= wager;
                     int winAmount = 0;
-                    int[,] grid = LogicMethods.GenerateGrid(random,ROW_COUNT,COLUMN_COUNT,MIN_NUMBER,MAX_NUMBER);
+                    int[,] grid = LogicMethods.GenerateGrid(random);
                     UIMethods.DisplayGrid(grid);
                     bool hasWon = LogicMethods.CheckWinningLines(grid, wager, out winAmount);
 

@@ -4,7 +4,7 @@ namespace SlotMachine2
 {
     public static class LogicMethods
     {   
-        public static int[,] GenerateGrid(Random random, int ROW_COUNT, int COLUMN_COUNT,int MIN_NUMBER, int MAX_NUMBER)
+        public static int[,] GenerateGrid(Random random)
         {
             int[,] grid = new int[ROW_COUNT, COLUMN_COUNT];
 
