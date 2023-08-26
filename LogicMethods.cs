@@ -48,7 +48,7 @@ namespace SlotMachine2
             for (int col = 0; col < COLUMN_COUNT; col++)
             {
                 bool winningLine = true;
-                for (int row = 0; row < ROW_COUNT - 1; row++)
+                for (int row = 0; row < MAX_ROW_COUNT; row++)
                 {
                     if (grid[row, col] != grid[row + 1, col])
                     {
@@ -71,7 +71,7 @@ namespace SlotMachine2
             for (int row = 0; row < ROW_COUNT; row++)
             {
                 bool winningLine = true;
-                for (int col = 0; col < COLUMN_COUNT - 1; col++)
+                for (int col = 0; col < MAX_COLUMN_COUNT; col++)
                 {
                     if (grid[row, col] != grid[row, col + 1])
                     {
@@ -91,7 +91,7 @@ namespace SlotMachine2
         {
             // Check diagonal lines
             bool winningLine = true;
-            for (int i = 0; i < ROW_COUNT - 1; i++)
+            for (int i = 0; i < MAX_ROW_COUNT; i++)
             {
                 if (grid[i, i] != grid[i + 1, i + 1])
                 {
@@ -105,9 +105,9 @@ namespace SlotMachine2
             }
 
             winningLine = true;
-            for (int i = 0; i < ROW_COUNT - 1; i++)
+            for (int i = 0; i < MAX_ROW_COUNT; i++)
             {
-                if (grid[i, COLUMN_COUNT - 1 - i] != grid[i + 1, COLUMN_COUNT - 2 - i])
+                if (grid[i, MAX_COLUMN_COUNT - i] != grid[i + 1, COLUMN_COUNT - 2 - i])
                 {
                     winningLine = false;
                     break;

@@ -9,5 +9,7 @@
         public const int COLUMN_COUNT = 3;
         public const int MIN_NUMBER = 1;
         public const int MAX_NUMBER = 9;
+        public const int MAX_ROW_COUNT = ROW_COUNT - 1;
+        public const int MAX_COLUMN_COUNT = COLUMN_COUNT - 1;
     }
 }
