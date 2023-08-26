@@ -1,5 +1,4 @@
-﻿using static SlotMachine2.Constants;
-using SlotMachine2;
+﻿using SlotMachine2;
 
 namespace SlotMachine
 {

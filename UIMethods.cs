@@ -53,8 +53,8 @@
         public static bool ExitProgram()
         {
             Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
-            string userInput = Console.ReadLine().ToLower();
-            if (userInput == "e")
+            string userInput = Console.ReadLine().ToUpper();
+            if (userInput == "E")
             {
                 return true;
             }
@@ -66,7 +66,7 @@
             Console.WriteLine("Would you like to play again?");
             Console.WriteLine("Press any key to EXIT or 'Y' to start again!");
             string exitOrStartAgain = Console.ReadLine().ToUpper();
-            if (exitOrStartAgain.Trim().ToUpper() == "Y")
+            if (exitOrStartAgain == "Y")
             {
                 return true;
             }
