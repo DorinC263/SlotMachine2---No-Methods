@@ -7,11 +7,9 @@ namespace SlotMachine
         public static Random random = new Random();
         static void Main(string[] args)
         {
-            char playAgain = 'Y';            
-
             UIMethods.DisplayWelcomeMessage();
 
-            while (playAgain == 'Y')
+            while (true)
             {
                 int playerMoney;
                 int wager;
@@ -51,8 +49,8 @@ namespace SlotMachine
                         break;
                     }
                 }
-                bool exitOrPlay = UIMethods.CheckOnPlayAgain();
-                if (exitOrPlay == false)
+                bool newGame = UIMethods.CheckOnPlayAgain();
+                if (newGame == false)
                 {
                     break;
                 }
