@@ -50,7 +50,7 @@
             }                
         }
 
-        public static bool ContinueOrExit()
+        public static bool ExitProgram()
         {
             Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
             string userInput = Console.ReadLine().ToLower();

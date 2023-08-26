@@ -47,8 +47,8 @@ namespace SlotMachine
                         playerMoney -= winAmount;
                     }
 
-                    bool continuePlay = UIMethods.ContinueOrExit();
-                    if (continuePlay)
+                    bool stopPlay = UIMethods.ExitProgram();
+                    if (stopPlay)
                     {
                         break;
                     }
