@@ -61,7 +61,7 @@
             return false;
         }
 
-        public static bool PlayAgain()
+        public static bool CheckOnPlayAgain()
         {
             Console.WriteLine("Would you like to play again?");
             Console.WriteLine("Press any key to EXIT or 'Y' to start again!");

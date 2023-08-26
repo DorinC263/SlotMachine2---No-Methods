@@ -53,7 +53,7 @@ namespace SlotMachine
                         break;
                     }
                 }
-                bool exitOrPlay = UIMethods.PlayAgain();
+                bool exitOrPlay = UIMethods.CheckOnPlayAgain();
                 if (exitOrPlay == false)
                 {
                     break;
