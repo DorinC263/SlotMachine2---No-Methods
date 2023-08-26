@@ -8,8 +8,7 @@ namespace SlotMachine
         public static Random random = new Random();
         static void Main(string[] args)
         {
-            char playAgain = 'Y';
-            
+            char playAgain = 'Y';            
 
             UIMethods.DisplayWelcomeMessage();
 
@@ -42,7 +41,6 @@ namespace SlotMachine
                         playerMoney += winAmount;
                         UIMethods.WonAmount(winAmount, playerMoney);
                     }
-
                     else
                     {
                         UIMethods.NotWinning();
