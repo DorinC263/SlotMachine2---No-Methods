@@ -33,12 +33,11 @@ namespace SlotMachine
                     }
 
                     playerMoney -= wager;
-                    int winAmount = 0;
                     int[,] grid = LogicMethods.GenerateGrid(random);
                     UIMethods.DisplayGrid(grid);
-                    bool hasWon = LogicMethods.CheckWinningLines(grid, wager, out winAmount);
+                    int winAmount = LogicMethods.CheckWinningLines(grid, wager);
 
-                    if (hasWon)
+                    if (winAmount > 0)
                     {
                         playerMoney += winAmount;
                         UIMethods.WonAmount(winAmount, playerMoney);

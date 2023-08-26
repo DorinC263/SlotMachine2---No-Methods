@@ -19,100 +19,105 @@ namespace SlotMachine2
             return grid;
         }
 
-        public static bool CheckWinningLines(int[,] grid, int wager, out int winAmount)
+        public static int CheckWinningLines(int[,] grid, int wager)
         {
-            winAmount = 0;
+            int winAmount = 0;
 
             if(wager >= VERTICAL_LINES)
             {
-                CheckVerticalLines(grid, wager, ref winAmount);
+                winAmount += CheckVerticalLines(grid, wager);
             }
             
             if(wager >= HORIZONTAL_LINES)
             {
-                CheckHorizontalLines(grid, wager, ref winAmount);
+                winAmount += CheckHorizontalLines(grid, wager);
             }
             
             if(wager >= ALL_LINES)
             {
-                CheckDiagonalLines(grid, wager, ref winAmount);
+                winAmount += CheckDiagonalLines(grid, wager);
             }          
 
-            return winAmount > 0; // Return true if winAmount is greater than 0
+            return winAmount; 
         }
 
-        public static void CheckVerticalLines(int[,] grid,int wager,ref int winAmount)
+        public static int CheckVerticalLines(int[,] grid,int wager)
         {
+            int winAmount = 0;
             // Check vertical lines
             for (int col = 0; col < COLUMN_COUNT; col++)
             {
-                bool winningLine = false;
+                bool winningLine = true;
                 for (int row = 0; row < ROW_COUNT - 1; row++)
                 {
                     if (grid[row, col] != grid[row + 1, col])
                     {
-                        winningLine = true;
+                        winningLine = false;
                         break;
                     }
                 }
-                if (!winningLine)
+                if (winningLine)
                 {
                     winAmount += wager; // Add wager to winAmount for each vertical line
                 }
             }
+            return winAmount;
         }
 
-        public static void CheckHorizontalLines(int[,] grid, int wager,ref int winAmount)
+        public static int CheckHorizontalLines(int[,] grid, int wager)
         {
+            int winAmount = 0;
             // Check horizontal lines
             for (int row = 0; row < ROW_COUNT; row++)
             {
-                bool winningLine = false;
+                bool winningLine = true;
                 for (int col = 0; col < COLUMN_COUNT - 1; col++)
                 {
                     if (grid[row, col] != grid[row, col + 1])
                     {
-                        winningLine = true;
+                        winningLine = false;
                         break;
                     }
                 }
-                if (!winningLine)
+                if (winningLine)
                 {
                     winAmount += wager; // Add wager to winAmount for each horizontal line
                 }
             }
+            return winAmount;
         }
 
-        public static void CheckDiagonalLines(int[,]grid, int wager,ref int winAmount)
+        public static int CheckDiagonalLines(int[,]grid, int wager)
         {
             // Check diagonal lines
-            bool winningLine = false;
+            bool winningLine = true;
             for (int i = 0; i < ROW_COUNT - 1; i++)
             {
                 if (grid[i, i] != grid[i + 1, i + 1])
                 {
-                    winningLine = true;
+                    winningLine = false;
                     break;
                 }
             }
-            if (!winningLine)
+            if (winningLine)
             {
-                winAmount += wager; // Add wager to winAmount for diagonal line
+                return wager; // Add wager to winAmount for diagonal line
             }
 
-            winningLine = false;
+            winningLine = true;
             for (int i = 0; i < ROW_COUNT - 1; i++)
             {
                 if (grid[i, COLUMN_COUNT - 1 - i] != grid[i + 1, COLUMN_COUNT - 2 - i])
                 {
-                    winningLine = true;
+                    winningLine = false;
                     break;
                 }
             }
-            if (!winningLine)
+            if (winningLine)
             {
-                winAmount += wager; // Add wager to winAmount for diagonal line
+                return wager; // Add wager to winAmount for diagonal line
             }
+            return 0;
         }
     }
 }
