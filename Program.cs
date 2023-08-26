@@ -43,7 +43,6 @@ namespace SlotMachine
                     else
                     {
                         UIMethods.NotWinning();
-                        playerMoney -= winAmount;
                     }
 
                     bool stopPlay = UIMethods.ExitProgram();
