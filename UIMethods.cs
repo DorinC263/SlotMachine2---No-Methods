@@ -2,15 +2,23 @@
 {
     public static class UIMethods
     {
+        /// <summary>
+        /// Display the welcome message
+        /// </summary>
         public static void DisplayWelcomeMessage()
         {
             Console.WriteLine("\t\tWelcome to the Slot Machine");
-            Console.WriteLine("\tFor each winning line you need to increase your bet by 5$ !!");
-            Console.WriteLine($"\tOnly vertical lines - {Constants.VERTICAL_LINES}$ bet");
-            Console.WriteLine($"\tHorizontal and vertical lines - {Constants.HORIZONTAL_LINES}$ bet");
-            Console.WriteLine($"\tHorizontal, vertical and diagonaly lines - {Constants.ALL_LINES}$ bet");
+            Console.WriteLine("\tFor each winning line you need to increase your bet by 1$ !!");
+            Console.WriteLine("\tYou can play all 8 lines with a min bet of 8$.");
+            Console.WriteLine("\t For ex: 1$ is one horizontal line");
+            Console.WriteLine("\t         2$ is 2 horizontal lines");
+            Console.WriteLine("\t         3$ is 3 horizontal lines");
         }
         
+        /// <summary>
+        /// Shows how much money he added
+        /// </summary>
+        /// <param name="playerMoney">how much money the user added and how much he wants to wage</param>
         public static void CurentMoney(int playerMoney)
         {
             Console.WriteLine($"Your current money: {playerMoney} $");
@@ -36,7 +44,10 @@
         {
             Console.WriteLine("Thank you for chossing to Play the SlotMachine!");
         }
-
+        /// <summary>
+        /// Display the grid
+        /// </summary>
+        /// <param name="grid"></param>
         public static void DisplayGrid(int[,] grid)
         {
             //Display the grid
@@ -50,6 +61,10 @@
             }                
         }
 
+        /// <summary>
+        /// User input Continue or exit
+        /// </summary>
+        /// <returns>After each round, the user has the option to exit or continue the game</returns>
         public static bool ExitProgram()
         {
             Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
@@ -61,6 +76,10 @@
             return false;
         }
 
+        /// <summary>
+        /// User Input for Play Again
+        /// </summary>
+        /// <returns>User input after the game finish, if he wants to Play Again or exit the game completely</returns>
         public static bool CheckOnPlayAgain()
         {
             Console.WriteLine("Would you like to play again?");
@@ -88,6 +107,10 @@
                 Console.WriteLine("Please enter a valid Digit!");
             }            
         }
+        /// <summary>
+        /// User input on how much he want to wager
+        /// </summary>
+        /// <returns>If the wager is not a digit, it loops until he adds a digit</returns>
         public static int GetWagerAmount()
         {
             while(true)

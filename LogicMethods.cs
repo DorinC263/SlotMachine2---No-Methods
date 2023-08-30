@@ -3,7 +3,12 @@
 namespace SlotMachine2
 {
     public static class LogicMethods
-    {   
+    {
+        /// <summary>
+        /// Generate Grid
+        /// </summary>
+        /// <param name="random">It generates the grid 3 by 3</param>
+        /// <returns></returns>
         public static int[,] GenerateGrid(Random random)
         {
             int[,] grid = new int[ROW_COUNT, COLUMN_COUNT];
@@ -19,33 +24,60 @@ namespace SlotMachine2
             return grid;
         }
 
+        /// <summary>
+        ///Checks Winning lines
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="wager">If the symbols are the same, it returns winAmount</param>
+        /// <returns></returns>
         public static int CheckWinningLines(int[,] grid, int wager)
         {
             int winAmount = 0;
 
-            if(wager >= VERTICAL_LINES)
+            if (wager >= VERTICAL_LINES)
             {
                 winAmount += CheckVerticalLines(grid, wager);
             }
-            
-            if(wager >= HORIZONTAL_LINES)
+
+            if (wager >= HORIZONTAL_LINES)
             {
                 winAmount += CheckHorizontalLines(grid, wager);
             }
-            
-            if(wager >= ALL_LINES)
+
+            if (wager >= ALL_LINES)
             {
                 winAmount += CheckDiagonalLines(grid, wager);
-            }          
+            }
 
-            return winAmount; 
+            return winAmount;
         }
 
-        public static int CheckVerticalLines(int[,] grid,int wager)
+        /// <summary>
+        /// Check Vertical Lines
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="wager">It checks vertical lines for the same symbol, if returns true, the winAmount is added</param>
+        /// <returns></returns>
+        public static int CheckVerticalLines(int[,] grid, int wager)
         {
             int winAmount = 0;
+            int linesToCheck = 1;
+
+            if (wager == 1)
+            {
+                linesToCheck = 1;
+            }
+            if (wager == 2)
+            {
+                linesToCheck = 2;
+            }
+            if (wager == 3 || wager >= 4)
+            {
+                linesToCheck = 3;
+            }
+
             // Check vertical lines
-            for (int col = 0; col < COLUMN_COUNT; col++)
+            for (int col = 0; col < linesToCheck; col++)
             {
                 bool winningLine = true;
                 for (int row = 0; row < MAX_ROW_COUNT; row++)
@@ -64,11 +96,30 @@ namespace SlotMachine2
             return winAmount;
         }
 
+        /// <summary>
+        /// Check Horizontal lines for Win
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="wager">It checks horizontal lines for the same symbol</param>
+        /// <returns></returns>
         public static int CheckHorizontalLines(int[,] grid, int wager)
         {
             int winAmount = 0;
+            int linesToCheck = 1;
+            if (wager == 4)
+            {
+                linesToCheck = 1;
+            }
+            if (wager == 5)
+            {
+                linesToCheck = 2;
+            }
+            if (wager == 6 || wager >= 7)
+            {
+                linesToCheck = 3;
+            }
             // Check horizontal lines
-            for (int row = 0; row < ROW_COUNT; row++)
+            for (int row = 0; row < linesToCheck; row++)
             {
                 bool winningLine = true;
                 for (int col = 0; col < MAX_COLUMN_COUNT; col++)
@@ -87,37 +138,53 @@ namespace SlotMachine2
             return winAmount;
         }
 
-        public static int CheckDiagonalLines(int[,]grid, int wager)
+        /// <summary>
+        /// It checks for diagonal lines
+        /// </summary>
+        /// <param name="grid">It checks for diagonal wins, both from top-right to bottom left, and from top-left to bottom right</param>
+        /// <param name="wager"></param>
+        /// <returns></returns>
+        public static int CheckDiagonalLines(int[,] grid, int wager)
         {
+            int winAmount = 0;
+            int linesToCheck = 1;
+
+            if(wager == 7)
+            {
+                linesToCheck = 1;
+            }
+            if (wager >= 8)
+            {
+                linesToCheck = 2;
+            }
+
             // Check diagonal lines
-            bool winningLine = true;
-            for (int i = 0; i < MAX_ROW_COUNT; i++)
+            bool firstDiagonalWin = true;
+            bool secondDiagonalWin = true;
+
+            for (int i = 0; i < linesToCheck -1; i++)
             {
                 if (grid[i, i] != grid[i + 1, i + 1])
                 {
-                    winningLine = false;
+                    firstDiagonalWin = false;
                     break;
                 }
-            }
-            if (winningLine)
-            {
-                return wager; // Add wager to winAmount for diagonal line
-            }
-
-            winningLine = true;
-            for (int i = 0; i < MAX_ROW_COUNT; i++)
+            }            
+            // check second diagonal
+            for (int i = 0; i < linesToCheck -1; i++)
             {
                 if (grid[i, MAX_COLUMN_COUNT - i] != grid[i + 1, COLUMN_COUNT - 2 - i])
                 {
-                    winningLine = false;
+                    secondDiagonalWin = false;
                     break;
                 }
             }
-            if (winningLine)
+
+            if (firstDiagonalWin || secondDiagonalWin)
             {
                 return wager; // Add wager to winAmount for diagonal line
             }
-            return 0;
+            return winAmount;
         }
     }
 }
