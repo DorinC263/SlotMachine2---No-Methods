@@ -14,17 +14,17 @@ namespace SlotMachine
                 int playerMoney;
                 int wager;
 
-                playerMoney = UIMethods.GetMoneyAmount(); 
+                playerMoney = UIMethods.DisplayAddMoneyAmount(); 
 
                 while (playerMoney > 0)
                 {
-                    UIMethods.CurentMoney(playerMoney);
+                    UIMethods.DisplayCurrentMoney(playerMoney);
 
-                    wager = UIMethods.GetWagerAmount();
+                    wager = UIMethods.DisplayWagerAmount();
                                         
                     if (wager > playerMoney)
                     {
-                        UIMethods.NotEnoughMoney();
+                        UIMethods.DisplayNotEnoughMoney();
                         continue;
                     }
 
@@ -36,20 +36,20 @@ namespace SlotMachine
                     if (winAmount > 0)
                     {
                         playerMoney += winAmount;
-                        UIMethods.WonAmount(winAmount, playerMoney);
+                        UIMethods.DisplayWonAmount(winAmount, playerMoney);
                     }
                     else
                     {
-                        UIMethods.NotWinning();
+                        UIMethods.DisplayNotWinning();
                     }
 
-                    bool stopPlay = UIMethods.ExitProgram();
+                    bool stopPlay = UIMethods.DisplayIfExitProgram();
                     if (stopPlay)
                     {
                         break;
                     }
                 }
-                bool newGame = UIMethods.CheckOnPlayAgain();
+                bool newGame = UIMethods.DisplayCheckOnPlayAgain();
                 if (newGame == false)
                 {
                     break;

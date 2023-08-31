@@ -162,7 +162,7 @@ namespace SlotMachine2
             bool firstDiagonalWin = true;
             bool secondDiagonalWin = true;
 
-            for (int i = 0; i < linesToCheck -1; i++)
+            for (int i = 0; i < linesToCheck; i++)
             {
                 if (grid[i, i] != grid[i + 1, i + 1])
                 {
@@ -171,7 +171,7 @@ namespace SlotMachine2
                 }
             }            
             // check second diagonal
-            for (int i = 0; i < linesToCheck -1; i++)
+            for (int i = 0; i < linesToCheck; i++)
             {
                 if (grid[i, MAX_COLUMN_COUNT - i] != grid[i + 1, COLUMN_COUNT - 2 - i])
                 {

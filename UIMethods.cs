@@ -14,28 +14,28 @@
             Console.WriteLine("\t         2$ is 2 horizontal lines");
             Console.WriteLine("\t         3$ is 3 horizontal lines");
         }
-        
+
         /// <summary>
         /// Shows how much money he added
         /// </summary>
         /// <param name="playerMoney">how much money the user added and how much he wants to wage</param>
-        public static void CurentMoney(int playerMoney)
+        public static void DisplayCurrentMoney(int playerMoney)
         {
             Console.WriteLine($"Your current money: {playerMoney} $");
             Console.Write("Enter your wager amount: ");
         }
 
-        public static void NotEnoughMoney()
+        public static void DisplayNotEnoughMoney()
         {
             Console.WriteLine("You don't have enough money to place that wager!");
         }
 
-        public static void WonAmount(int winAmount, int playerMoney)
+        public static void DisplayWonAmount(int winAmount, int playerMoney)
         {
             Console.WriteLine($"Congratulations! You have won ${winAmount}. Your new total is ${playerMoney}.");
         }
 
-        public static void NotWinning()
+        public static void DisplayNotWinning()
         {
             Console.WriteLine("Sorry, try again.");
         }
@@ -58,14 +58,14 @@
                     Console.Write(grid[i, j] + " ");
                 }
                 Console.WriteLine();
-            }                
+            }
         }
 
         /// <summary>
         /// User input Continue or exit
         /// </summary>
         /// <returns>After each round, the user has the option to exit or continue the game</returns>
-        public static bool ExitProgram()
+        public static bool DisplayIfExitProgram()
         {
             Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
             string userInput = Console.ReadLine().ToUpper();
@@ -80,7 +80,7 @@
         /// User Input for Play Again
         /// </summary>
         /// <returns>User input after the game finish, if he wants to Play Again or exit the game completely</returns>
-        public static bool CheckOnPlayAgain()
+        public static bool DisplayCheckOnPlayAgain()
         {
             Console.WriteLine("Would you like to play again?");
             Console.WriteLine("Press any key to EXIT or 'Y' to start again!");
@@ -92,37 +92,43 @@
             return false;
         }
 
-        public static int GetMoneyAmount()
+        public static int DisplayAddMoneyAmount()
         {
             while (true)
             {
                 Console.Write("How much $ would you like to add? : ");
 
                 string valueString = Console.ReadLine();
-                                
+
                 if (int.TryParse(valueString, out int value))
                 {
                     return value;
                 }
                 Console.WriteLine("Please enter a valid Digit!");
-            }            
+            }
         }
         /// <summary>
         /// User input on how much he want to wager
         /// </summary>
         /// <returns>If the wager is not a digit, it loops until he adds a digit</returns>
-        public static int GetWagerAmount()
+        public static int DisplayWagerAmount()
         {
-            while(true)
+            int wager;
+            while (true)
             {
                 string wagerString = Console.ReadLine();
 
-                if (int.TryParse(wagerString, out int wager))
+                if (int.TryParse(wagerString, out wager))
                 {
-                    return wager;
-                }                
+                    if (wager > 0)
+                    {
+                        return wager;
+                    }
+
+                }
                 Console.Write("Please enter a valid wager amount! : ");
-            }            
+
+            }
         }
     }
 }
