@@ -19,7 +19,7 @@ A simple slot machine game where the user can play various lines in a 3x3 grid. 
 
 1. Clone the repository:
 
-git clone https://github.com/DorinC263/slot-machine.git
+git clone https://github.com/DorinC263/SlotMachine2--Logic-And-UI
 
 cd slot-machine
 
