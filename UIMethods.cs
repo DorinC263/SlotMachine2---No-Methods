@@ -113,12 +113,11 @@
         /// <returns>If the wager is not a digit, it loops until he adds a digit</returns>
         public static int DisplayWagerAmount()
         {
-            int wager;
             while (true)
             {
                 string wagerString = Console.ReadLine();
 
-                if (int.TryParse(wagerString, out wager))
+                if (int.TryParse(wagerString, out int wager))
                 {
                     if (wager > 0)
                     {

@@ -11,10 +11,9 @@ namespace SlotMachine
 
             while (true)
             {
-                int playerMoney;
                 int wager;
 
-                playerMoney = UIMethods.DisplayAddMoneyAmount(); 
+                int playerMoney = UIMethods.DisplayAddMoneyAmount(); 
 
                 while (playerMoney > 0)
                 {
