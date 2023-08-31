@@ -61,20 +61,7 @@ namespace SlotMachine2
         public static int CheckVerticalLines(int[,] grid, int wager)
         {
             int winAmount = 0;
-            int linesToCheck = 1;
-
-            if (wager == 1)
-            {
-                linesToCheck = 1;
-            }
-            if (wager == 2)
-            {
-                linesToCheck = 2;
-            }
-            if (wager == 3 || wager >= 4)
-            {
-                linesToCheck = 3;
-            }
+            int linesToCheck = Math.Min(wager, 3);   
 
             // Check vertical lines
             for (int col = 0; col < linesToCheck; col++)
@@ -105,19 +92,8 @@ namespace SlotMachine2
         public static int CheckHorizontalLines(int[,] grid, int wager)
         {
             int winAmount = 0;
-            int linesToCheck = 1;
-            if (wager == 4)
-            {
-                linesToCheck = 1;
-            }
-            if (wager == 5)
-            {
-                linesToCheck = 2;
-            }
-            if (wager == 6 || wager >= 7)
-            {
-                linesToCheck = 3;
-            }
+            int linesToCheck = Math.Min(wager -3, 3);
+            
             // Check horizontal lines
             for (int row = 0; row < linesToCheck; row++)
             {
@@ -147,16 +123,7 @@ namespace SlotMachine2
         public static int CheckDiagonalLines(int[,] grid, int wager)
         {
             int winAmount = 0;
-            int linesToCheck = 1;
-
-            if(wager == 7)
-            {
-                linesToCheck = 1;
-            }
-            if (wager >= 8)
-            {
-                linesToCheck = 2;
-            }
+            int linesToCheck = (wager == 7) ? 1 : 2;
 
             // Check diagonal lines
             bool firstDiagonalWin = true;
@@ -169,7 +136,7 @@ namespace SlotMachine2
                     firstDiagonalWin = false;
                     break;
                 }
-            }            
+            }
             // check second diagonal
             for (int i = 0; i < linesToCheck; i++)
             {
