@@ -2,14 +2,17 @@
 
 namespace SlotMachine2
 {
+
     public static class LogicMethods
     {
+        public static Random random = new Random();
+
         /// <summary>
         /// Generate Grid
         /// </summary>
-        /// <param name="random">It generates the grid 3 by 3</param>
+        /// <param name="random">A 2D array representing the generated grid.</param>
         /// <returns></returns>
-        public static int[,] GenerateGrid(Random random)
+        public static int[,] GenerateGrid()
         {
             int[,] grid = new int[ROW_COUNT, COLUMN_COUNT];
 
