@@ -13,13 +13,13 @@ namespace SlotMachine
             {
                 int wager;
 
-                int playerMoney = UIMethods.DisplayAddMoneyAmount(); 
+                int playerMoney = UIMethods.PromptAddMoneyAmount(); 
 
                 while (playerMoney > 0)
                 {
                     UIMethods.DisplayCurrentMoney(playerMoney);
 
-                    wager = UIMethods.DisplayWagerAmount();
+                    wager = UIMethods.PromptWagerAmount();
                                         
                     if (wager > playerMoney)
                     {
@@ -42,7 +42,7 @@ namespace SlotMachine
                         UIMethods.DisplayNotWinning();
                     }
 
-                    bool stopPlay = UIMethods.DisplayIfExitProgram();
+                    bool stopPlay = UIMethods.PromptIfExitProgram();
                     if (stopPlay)
                     {
                         break;

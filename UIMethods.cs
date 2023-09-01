@@ -65,7 +65,7 @@
         /// User input Continue or exit
         /// </summary>
         /// <returns>After each round, the user has the option to exit or continue the game</returns>
-        public static bool DisplayIfExitProgram()
+        public static bool PromptIfExitProgram()
         {
             Console.WriteLine("Please enter 'E' to exit or 'Enter' to continue");
             string userInput = Console.ReadLine().ToUpper();
@@ -92,7 +92,7 @@
             return false;
         }
 
-        public static int DisplayAddMoneyAmount()
+        public static int PromptAddMoneyAmount()
         {
             while (true)
             {
@@ -111,7 +111,7 @@
         /// User input on how much he want to wager
         /// </summary>
         /// <returns>If the wager is not a digit, it loops until he adds a digit</returns>
-        public static int DisplayWagerAmount()
+        public static int PromptWagerAmount()
         {
             while (true)
             {
