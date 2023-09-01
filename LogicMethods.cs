@@ -129,14 +129,13 @@ namespace SlotMachine2
             int linesToCheck = (wager == 7) ? 1 : 2;
 
             // Check diagonal lines
-            bool firstDiagonalWin = true;
-            bool secondDiagonalWin = true;
+            bool winningLine = true;
 
             for (int i = 0; i < linesToCheck; i++)
             {
                 if (grid[i, i] != grid[i + 1, i + 1])
                 {
-                    firstDiagonalWin = false;
+                    winningLine = false;
                     break;
                 }
             }
@@ -145,12 +144,12 @@ namespace SlotMachine2
             {
                 if (grid[i, MAX_COLUMN_COUNT - i] != grid[i + 1, COLUMN_COUNT - 2 - i])
                 {
-                    secondDiagonalWin = false;
+                    winningLine = false;
                     break;
                 }
             }
 
-            if (firstDiagonalWin || secondDiagonalWin)
+            if (winningLine)
             {
                 return wager; // Add wager to winAmount for diagonal line
             }
