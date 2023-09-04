@@ -64,7 +64,7 @@ namespace SlotMachine2
         public static int CheckVerticalLines(int[,] grid, int wager)
         {
             int winAmount = 0;
-            int linesToCheck = Math.Min(wager, 3);   
+            int linesToCheck = Math.Min(wager, 3);
 
             // Check vertical lines
             for (int col = 0; col < linesToCheck; col++)
@@ -95,8 +95,8 @@ namespace SlotMachine2
         public static int CheckHorizontalLines(int[,] grid, int wager)
         {
             int winAmount = 0;
-            int linesToCheck = Math.Min(wager -3, 3);
-            
+            int linesToCheck = Math.Min(wager - 3, 3);
+
             // Check horizontal lines
             for (int row = 0; row < linesToCheck; row++)
             {
@@ -126,26 +126,32 @@ namespace SlotMachine2
         public static int CheckDiagonalLines(int[,] grid, int wager)
         {
             int winAmount = 0;
-            int linesToCheck = (wager == 7) ? 1 : 2;
 
             // Check diagonal lines
             bool winningLine = true;
-
-            for (int i = 0; i < linesToCheck; i++)
+            if (wager >= ALL_LINES)
             {
-                if (grid[i, i] != grid[i + 1, i + 1])
+                for (int i = 0; i < COLUMN_COUNT - 1; i++)
                 {
-                    winningLine = false;
-                    break;
+                    if (grid[i, i] != grid[i + 1, i + 1])
+                    {
+                        winningLine = false;
+                        break;
+                    }
                 }
             }
-            // check second diagonal
-            for (int i = 0; i < linesToCheck; i++)
+            if (wager >= SECOND_DIAGONAL)
             {
-                if (grid[i, MAX_COLUMN_COUNT - i] != grid[i + 1, COLUMN_COUNT - 2 - i])
+                winningLine = true;
+
+                // check second diagonal
+                for (int i = 0; i < COLUMN_COUNT - 1; i++)
                 {
-                    winningLine = false;
-                    break;
+                    if (grid[i, MAX_COLUMN_COUNT - i] != grid[i + 1, COLUMN_COUNT - 2 - i])
+                    {
+                        winningLine = false;
+                        break;
+                    }
                 }
             }
 

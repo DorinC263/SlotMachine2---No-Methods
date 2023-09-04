@@ -5,6 +5,7 @@
         public const int VERTICAL_LINES = 1;
         public const int HORIZONTAL_LINES = 4;
         public const int ALL_LINES = 7;
+        public const int SECOND_DIAGONAL = ALL_LINES + 1;
         public const int ROW_COUNT = 3;
         public const int COLUMN_COUNT = 3;
         public const int MIN_NUMBER = 1;
